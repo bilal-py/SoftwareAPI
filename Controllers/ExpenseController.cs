@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.JsonPatch;
 using SoftwareAPI.Data;
 using SoftwareAPI.DTO;
 using SoftwareAPI.Models;
+using Microsoft.AspNetCore.Authorization;
 
 
 namespace ExpenseTracker.Controllers
@@ -61,6 +62,7 @@ namespace ExpenseTracker.Controllers
 
         // POST: api/expenses
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<ExpenseResponseDto>> CreateExpense(ExpenseDto dto)
         {
             var category = await _context.Category.FindAsync(dto.CategoryId);
